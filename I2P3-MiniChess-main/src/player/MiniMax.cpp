@@ -34,7 +34,7 @@ void read_board(std::ifstream& fin) {
 
 
 /**
- * @brief randomly choose a move and then write it into output file
+ * @brief choose a move with max and then write it into output file
  * 
  * @param fout 
  */

@@ -27,18 +27,22 @@ int State::evaluate(){
         case 2://rock
         {
           value+=6;
+          break;
         }
         case 3://knight
         {
           value+=7;
+          break;
         }
         case 4://Bishop
         {
           value+=8;
+          break;
         }
         case 5://queen
         {
           value+=20;
+          break;
         }
         case 6://king
         {
@@ -56,18 +60,22 @@ int State::evaluate(){
         case 2://rock
         {
           value-=6;
+          break;
         }
         case 3://knight
         {
           value-=7;
+          break;
         }
         case 4://Bishop
         {
           value-=8;
+          break;
         }
         case 5://queen
         {
           value-=20;
+          break;
         }
         case 6://king
         {
