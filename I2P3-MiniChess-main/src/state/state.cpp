@@ -54,32 +54,32 @@ int State::evaluate(){
       switch(oppo_board[i][j]){
         case 1://pawn
         {
-          value-=2;
+          value-=4;
           break;
         }
         case 2://rock
         {
-          value-=6;
+          value-=12;
           break;
         }
         case 3://knight
         {
-          value-=7;
+          value-=14;
           break;
         }
         case 4://Bishop
         {
-          value-=8;
+          value-=16;
           break;
         }
         case 5://queen
         {
-          value-=20;
+          value-=40;
           break;
         }
         case 6://king
         {
-          value-=99999;
+          value-=999999;
         }
         default:
           break;
