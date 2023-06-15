@@ -18,9 +18,9 @@ Move MiniMax::get_move(State *state, int depth){
   auto actions = state->legal_actions;
   int id=0;
   int maxval=0;
-  for(int i=0;i<actions.size();i++){
+  for(long unsigned int i=0;i<actions.size();i++){
     int val=(state->next_state(actions[i]))->evaluate();
-    if(val>maxval){
+    if(val>=maxval){
         id=i;
         maxval=val;
     }

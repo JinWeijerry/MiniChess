@@ -17,7 +17,7 @@ int State::evaluate(){
   auto oppo_board=this->board.board[1-this->player];
   int value;
   for(int i=0;i<BOARD_H;i++){
-    for(int j=0;j<BOARD_W;i++){
+    for(int j=0;j<BOARD_W;j++){
       switch(self_board[i][j]){
         case 1://pawn
         {
@@ -86,7 +86,7 @@ int State::evaluate(){
       }
     }
   }
-  this->value=value;
+  this->val=value;
   return value;
 }
 
