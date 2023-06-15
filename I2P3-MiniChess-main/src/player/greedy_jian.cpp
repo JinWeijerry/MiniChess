@@ -3,7 +3,7 @@
 
 #include "../config.hpp"
 #include "../state/state.hpp"
-#include "../policy/MiniMax.hpp"
+#include "../policy/greedy_jian.hpp"
 
 
 State* root;
@@ -34,7 +34,7 @@ void read_board(std::ifstream& fin) {
 
 
 /**
- * @brief choose a move with max and then write it into output file
+ * @brief randomly choose a move and then write it into output file
  * 
  * @param fout 
  */
@@ -42,7 +42,7 @@ void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
   while(true) {
     // Choose a random spot.
-    auto move = MiniMax::get_move(root, 4);
+    auto move = Greedy::get_move(root, 0);
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
     
@@ -60,6 +60,7 @@ void write_valid_spot(std::ofstream& fout) {
  * @return int 
  */
 int main(int, char** argv) {
+  srand(RANDOM_SEED);
   std::ifstream fin(argv[1]);
   std::ofstream fout(argv[2]);
 

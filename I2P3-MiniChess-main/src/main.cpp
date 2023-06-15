@@ -466,7 +466,7 @@ int main(int argc, char** argv) {
       break;
     }else{
       temp = game.next_state(action);
-      std::cout << "Depth: " << total << std::endl;
+      std::cout << "Depth: " << total <<std::endl;
       std::cout << x_axis[action.first.second] << y_axis[action.first.first] << " → " \
                 << x_axis[action.second.second] << y_axis[action.second.first] << "\n";
       log << "Depth: " << total << std::endl;
