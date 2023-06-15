@@ -46,7 +46,7 @@ int State::evaluate(){
         }
         case 6://king
         {
-
+          value+=99999;
         }
         default:
           break;
@@ -79,7 +79,7 @@ int State::evaluate(){
         }
         case 6://king
         {
-
+          value-=99999;
         }
         default:
           break;
