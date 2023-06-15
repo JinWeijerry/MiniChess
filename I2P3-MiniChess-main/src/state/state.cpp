@@ -47,8 +47,38 @@ int State::evaluate(){
         default:
           break;
       }
+      switch(oppo_board[i][j]){
+        case 1://pawn
+        {
+          value-=2;
+          break;
+        }
+        case 2://rock
+        {
+          value-=6;
+        }
+        case 3://knight
+        {
+          value-=7;
+        }
+        case 4://Bishop
+        {
+          value-=8;
+        }
+        case 5://queen
+        {
+          value-=20;
+        }
+        case 6://king
+        {
+
+        }
+        default:
+          break;
+      }
     }
   }
+  this->value=value;
   return value;
 }
 
