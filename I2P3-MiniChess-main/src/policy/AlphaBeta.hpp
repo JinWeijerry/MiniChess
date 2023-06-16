@@ -10,5 +10,5 @@
 class AlphaBeta{
 public:
   static Move get_move(State *state, int depth);
-  static std::pair<int,Move> rec(State *state,int depth,bool self,int a,int b);
+  static int rec(State *state,int depth,bool self,int a,int b);
 };
