@@ -13,12 +13,12 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  auto self_board=this->board.board[this->player];
-  auto oppo_board=this->board.board[1-this->player];
-  int value;
+  auto white_board=this->board.board[0];
+  auto black_board=this->board.board[1];
+  int value=0;
   for(int i=0;i<BOARD_H;i++){
     for(int j=0;j<BOARD_W;j++){
-      switch(self_board[i][j]){
+      switch(white_board[i][j]){
         case 1://pawn
         {
           value+=2;
@@ -46,40 +46,42 @@ int State::evaluate(){
         }
         case 6://king
         {
-          value+=99999;
+          value+=100;
+          break;
         }
         default:
           break;
       }
-      switch(oppo_board[i][j]){
+      switch(black_board[i][j]){
         case 1://pawn
         {
-          value-=4;
+          value-=2;
           break;
         }
         case 2://rock
         {
-          value-=12;
+          value-=6;
           break;
         }
         case 3://knight
         {
-          value-=14;
+          value-=7;
           break;
         }
         case 4://Bishop
         {
-          value-=16;
+          value-=8;
           break;
         }
         case 5://queen
         {
-          value-=40;
+          value-=20;
           break;
         }
         case 6://king
         {
-          value-=999999;
+          value-=100;
+          break;
         }
         default:
           break;

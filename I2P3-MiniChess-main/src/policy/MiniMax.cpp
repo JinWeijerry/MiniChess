@@ -13,45 +13,35 @@
  */
 
 Move MiniMax::get_move(State *state, int depth){
-  if(!state->legal_actions.size())
-    state->get_legal_actions();
-  
-  auto actions = state->legal_actions;
-  int val=-99999999;
-  Move ans;
-  for(auto i:actions){
-    int temp=rec(state->next_state(i),depth,false);
-    if(temp>=val){
-      val=temp;
-      ans=i;
-    }
-  }
-  return ans;
+  return rec(state,depth,state->player).second;
 }
-int MiniMax::rec(State *state,int depth,bool player){
-  if(depth==0)return state->evaluate();
+std::pair<int,Move> MiniMax::rec(State *state,int depth,bool player){
+  if(depth==0)return {state->evaluate(),{{0,0},{0,0}}};
   if(!state->legal_actions.size())
     state->get_legal_actions();
   auto actions = state->legal_actions;
-  if(player){
-    int val=-9999999;
+  if(!player){
+    std::pair<int,Move >ans={-9999999,{{0,0},{0,0}}};
     for(auto i:actions){
-      int temp=rec(state->next_state(i),depth-1,false);
-      if(val<=temp){
-        val=temp;
+      auto next=state->next_state(i);
+      auto temp=rec(next,depth-1,next->player);
+      if(temp.first>=ans.first){
+        ans.first=temp.first;
+        ans.second=i;
       }
     }
-    return val;
+    return ans;
   }
   else{
-    int val=9999999;
+    std::pair<int,Move >ans={9999999,{{0,0},{0,0}}};
     for(auto i:actions){
-      int temp=rec(state->next_state(i),depth-1,true);
-      if(val>=temp){
-        val=temp;
+      auto next=state->next_state(i);
+      auto temp=rec(next,depth-1,next->player);
+      if(temp.first<=ans.first){
+        ans.first=temp.first;
+        ans.second=i;
       }
     }
-    return val;
+    return ans;
   }
-
 }

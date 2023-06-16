@@ -7,9 +7,8 @@
  * @brief Policy class for greedy policy, 
  * your policy class should have get_move method
  */
-class MiniMax{
+class AlphaBeta{
 public:
   static Move get_move(State *state, int depth);
-  static std::pair<int,Move> rec(State *state,int depth,bool player);
+  static std::pair<int,Move> rec(State *state,int depth,bool self,int a,int b);
 };
-
