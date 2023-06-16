@@ -12,45 +12,46 @@
  * @return Move 
  */
 
-Move MiniMax::get_move(State *state, int depth,bool self){
+Move MiniMax::get_move(State *state, int depth){
   if(!state->legal_actions.size())
     state->get_legal_actions();
   
   auto actions = state->legal_actions;
-  if(depth==0){
-    long unsigned int id=0;
-    int minmaxval=(self)?99999:-99999;
-    for(long unsigned int i=0;i<actions.size();i++){
-        int val=(state->next_state(actions[i]))->evaluate();
-        if((self)?val<=minmaxval:val>=minmaxval){
-            id=i;
-            minmaxval=val;
-        }
+  int val=-99999999;
+  Move ans;
+  for(auto i:actions){
+    int temp=rec(state->next_state(i),depth,false);
+    if(temp>=val){
+      val=temp;
+      ans=i;
     }
-    return actions[id];
   }
-  if(self){
-    long unsigned int id=0;
-    int minmaxval=-99999;
-    for(long unsigned int i=0;i<actions.size();i++){
-        int val=(state->next_state(get_move(state->next_state(actions[i]),depth-1,false)))->evaluate();
-        if(val>=minmaxval){
-            id=i;
-            minmaxval=val;
-        }
+  return ans;
+}
+int MiniMax::rec(State *state,int depth,bool player){
+  if(depth==0)return state->evaluate();
+  if(!state->legal_actions.size())
+    state->get_legal_actions();
+  auto actions = state->legal_actions;
+  if(player){
+    int val=-9999999;
+    for(auto i:actions){
+      int temp=rec(state->next_state(i),depth-1,false);
+      if(val<=temp){
+        val=temp;
+      }
     }
-    return actions[id];
+    return val;
   }
   else{
-    long unsigned int id=0;
-    int minmaxval=99999;
-    for(long unsigned int i=0;i<actions.size();i++){
-        int val=(state->next_state(get_move(state->next_state(actions[i]),depth-1,true)))->evaluate();
-        if(val<=minmaxval){
-            id=i;
-            minmaxval=val;
-        }
+    int val=9999999;
+    for(auto i:actions){
+      int temp=rec(state->next_state(i),depth-1,true);
+      if(val>=temp){
+        val=temp;
+      }
     }
-    return actions[id];
+    return val;
   }
+
 }
