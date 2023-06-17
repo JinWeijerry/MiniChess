@@ -21,32 +21,32 @@ int State::evaluate(){
       switch(white_board[i][j]){
         case 1://pawn
         {
-          value+=2;
+          value+=1;
           break;
         }
         case 2://rock
         {
-          value+=6;
+          value+=3;
           break;
         }
         case 3://knight
         {
-          value+=7;
+          value+=3;
           break;
         }
         case 4://Bishop
         {
-          value+=8;
+          value+=5;
           break;
         }
         case 5://queen
         {
-          value+=20;
+          value+=9;
           break;
         }
         case 6://king
         {
-          value+=100;
+          value+=500;
           break;
         }
         default:
@@ -55,32 +55,32 @@ int State::evaluate(){
       switch(black_board[i][j]){
         case 1://pawn
         {
-          value-=2;
+          value-=1;
           break;
         }
         case 2://rock
         {
-          value-=6;
+          value-=3;
           break;
         }
         case 3://knight
         {
-          value-=7;
+          value-=3;
           break;
         }
         case 4://Bishop
         {
-          value-=8;
+          value-=5;
           break;
         }
         case 5://queen
         {
-          value-=20;
+          value-=9;
           break;
         }
         case 6://king
         {
-          value-=100;
+          value-=500;
           break;
         }
         default:
