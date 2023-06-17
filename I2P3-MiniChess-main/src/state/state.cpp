@@ -11,6 +11,49 @@
  * 
  * @return int 
  */
+static int weight[6][BOARD_H][BOARD_W]={
+  {{3,3,3,3,3},//pawn
+   {2,2,2,2,2},
+   {1,1,1,1,1},
+   {-1,-1,-1,-1,-1},
+   {-2,-2,-2,-2,-2},
+   {-3,-3,-3,-3,-3}
+  },
+  {{-3,-3,-3,-3,-3},
+   {-2,-2,-2,-2,-2},
+   {-1,-1,-1,-1,-1},
+   {1,1,1,1,1},
+   {3,3,3,3,3},
+   {2,2,2,2,2}
+  },//rock
+  {{0,0,0,0,0},
+   {0,1,1,1,0},
+   {0,1,2,1,0},
+   {0,1,2,1,0},
+   {0,1,1,1,0},
+   {0,0,0,0,0}
+  },//knight
+  {{0,0,0,0,0},
+   {0,1,1,1,0},
+   {0,1,2,1,0},
+   {0,1,2,1,0},
+   {0,1,1,1,0},
+   {0,0,0,0,0}
+  },
+  {{0,0,0,0,0},
+   {0,1,1,1,0},
+   {0,1,2,1,0},
+   {0,1,2,1,0},
+   {0,1,1,1,0},
+   {0,0,0,0,0}},
+  {{-5,-5,-5,-5,-5},
+   {-3,-3,-3,-3,-3},
+   {-1,-1,-1,-1,-1},
+   {1,1,1,1,1},
+   {3,3,3,3,3},
+   {5,5,5,5,5}
+  }
+};
 int State::evaluate(){
   // [TODO] design your own evaluation function
   auto white_board=this->board.board[0];
@@ -21,32 +64,38 @@ int State::evaluate(){
       switch(white_board[i][j]){
         case 1://pawn
         {
-          value+=1;
+          value+=25;
+          value+=weight[0][i][j];
           break;
         }
         case 2://rock
         {
-          value+=3;
+          value+=30;
+          value+=weight[1][i][j];
           break;
         }
         case 3://knight
         {
-          value+=3;
+          value+=30;
+          value+=weight[2][i][j];
           break;
         }
         case 4://Bishop
         {
-          value+=5;
+          value+=50;
+          value+=weight[3][i][j];
           break;
         }
         case 5://queen
         {
-          value+=9;
+          value+=90;
+          value+=weight[4][i][j];
           break;
         }
         case 6://king
         {
-          value+=500;
+          value+=5000;
+          value+=weight[5][i][j];
           break;
         }
         default:
@@ -55,32 +104,38 @@ int State::evaluate(){
       switch(black_board[i][j]){
         case 1://pawn
         {
-          value-=1;
+          value-=25;
+          value-=weight[0][i][j];
           break;
         }
         case 2://rock
         {
-          value-=3;
+          value-=30;
+          value-=weight[1][i][j];
           break;
         }
         case 3://knight
         {
-          value-=3;
+          value-=30;
+          value-=weight[2][i][j];
           break;
         }
         case 4://Bishop
         {
-          value-=5;
+          value-=50;
+          value-=weight[3][i][j];
           break;
         }
         case 5://queen
         {
-          value-=9;
+          value-=90;
+          value-=weight[4][i][j];
           break;
         }
         case 6://king
         {
-          value-=500;
+          value-=5000;
+          value-=weight[5][i][j];
           break;
         }
         default:
