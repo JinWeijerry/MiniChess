@@ -41,10 +41,10 @@ static int weight[6][BOARD_H][BOARD_W]={
    {0,0,0,0,0}
   },
   {{0,0,0,0,0},
-   {0,1,1,1,0},
-   {0,1,2,1,0},
-   {0,1,2,1,0},
-   {0,1,1,1,0},
+   {0,3,3,3,0},
+   {0,3,5,3,0},
+   {0,3,5,3,0},
+   {0,3,3,3,0},
    {0,0,0,0,0}},
   {{-5,-5,-5,-5,-5},
    {-3,-3,-3,-3,-3},
@@ -64,25 +64,25 @@ int State::evaluate(){
       switch(white_board[i][j]){
         case 1://pawn
         {
-          value+=25;
+          value+=10;
           value+=weight[0][i][j];
           break;
         }
         case 2://rock
         {
-          value+=30;
+          value+=50;
           value+=weight[1][i][j];
           break;
         }
         case 3://knight
         {
-          value+=30;
+          value+=40;
           value+=weight[2][i][j];
           break;
         }
         case 4://Bishop
         {
-          value+=50;
+          value+=30;
           value+=weight[3][i][j];
           break;
         }
@@ -94,7 +94,7 @@ int State::evaluate(){
         }
         case 6://king
         {
-          value+=5000;
+          value+=50000;
           value+=weight[5][i][j];
           break;
         }
@@ -104,25 +104,25 @@ int State::evaluate(){
       switch(black_board[i][j]){
         case 1://pawn
         {
-          value-=25;
+          value-=10;
           value-=weight[0][i][j];
           break;
         }
         case 2://rock
         {
-          value-=30;
+          value-=50;
           value-=weight[1][i][j];
           break;
         }
         case 3://knight
         {
-          value-=30;
+          value-=40;
           value-=weight[2][i][j];
           break;
         }
         case 4://Bishop
         {
-          value-=50;
+          value-=30;
           value-=weight[3][i][j];
           break;
         }
@@ -134,7 +134,7 @@ int State::evaluate(){
         }
         case 6://king
         {
-          value-=5000;
+          value-=50000;
           value-=weight[5][i][j];
           break;
         }
