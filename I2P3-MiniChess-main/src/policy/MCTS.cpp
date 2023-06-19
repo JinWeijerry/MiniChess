@@ -52,7 +52,7 @@ void expand(node*root){
         return;
     }
     if(root->s->game_state==DRAW){
-        backpropagation(root,{1,1});
+        backpropagation(root,{0,1});
         return;
     }
     if(root->s->legal_actions.empty()){
@@ -98,7 +98,7 @@ Move get(State *state, int height){
         }
         step--;
     }
-    if((simulstate->game_state==WIN||simulstate->game_state==DRAW)&&simulstate->player){
+    if((simulstate->game_state==WIN||simulstate->game_state==DRAW)&&!simulstate->player){
         backpropagation(next,{1,1}); 
     }
     else{
