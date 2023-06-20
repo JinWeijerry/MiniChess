@@ -47,7 +47,7 @@ void write_valid_spot(std::ofstream& fout) {
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
     // Remember to flush the output to ensure the last action is written to file.
-    d=5;
+    d++;
     fout.flush();
     //break;
   }
